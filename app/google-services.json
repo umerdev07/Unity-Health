@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "475178488134",
+    "project_id": "unityhealth0807",
+    "storage_bucket": "unityhealth0807.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475178488134:android:5e0bc57b91712814209547",
+        "android_client_info": {
+          "package_name": "com.example.unityhealth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDkC-ddelUatgpfEHVeQLurwh5j7XqZBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
