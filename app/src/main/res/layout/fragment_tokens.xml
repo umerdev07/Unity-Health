@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_token"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.TokensFragment">
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="#F7F9FC">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/token_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Online Tokens"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/token_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:clipToPadding="false"
+        tools:ignore="SpeakableTextPresentCheck" />
+</LinearLayout>

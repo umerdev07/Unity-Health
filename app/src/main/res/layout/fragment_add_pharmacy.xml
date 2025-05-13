@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pharmacy_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.AddPharmacyFragment">
+    android:padding="20dp"
+    android:background="#f2f2f2">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/bg_rounded_white"
+        android:elevation="4dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Pharmacy"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:gravity="center"
+            android:paddingBottom="16dp" />
+
+        <EditText
+            android:id="@+id/et_pharmacy_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pharmacy Name"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#999999"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/et_pharmacy_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contact Number"
+            android:inputType="phone"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#999999"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/et_pharmacy_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Location"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#999999"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/et_pharmacy_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Opening Hours (e.g. 9AM - 9PM)"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#999999"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/et_pharmacy_medicines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Available Medicines (comma separated)"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:inputType="textMultiLine"
+            android:textColor="#000000"
+            android:textColorHint="#999999"
+            android:layout_marginTop="12dp" />
+
+        <CheckBox
+            android:id="@+id/cb_home_delivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Home Delivery Available"
+            android:textColor="#333333"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button"
+            android:layout_marginTop="24dp"
+            android:padding="14dp" />
+    </LinearLayout>
+</ScrollView>

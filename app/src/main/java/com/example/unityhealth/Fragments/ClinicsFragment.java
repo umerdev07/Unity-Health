@@ -1,66 +1,62 @@
 package com.example.unityhealth.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.unityhealth.Adapter.ClinicAdapter;
+import com.example.unityhealth.Models.ClinicModel;
 import com.example.unityhealth.R;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ClinicsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class ClinicsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private ArrayList<ClinicModel> clinicList;
+    private ClinicAdapter adapter;
+    private FirebaseFirestore db;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ClinicsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ClinicsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ClinicsFragment newInstance(String param1, String param2) {
-        ClinicsFragment fragment = new ClinicsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public ClinicsFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_clinics, container, false);
+        View view = inflater.inflate(R.layout.fragment_clinics, container, false);
+
+        recyclerView = view.findViewById(R.id.clinic_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        clinicList = new ArrayList<>();
+        adapter = new ClinicAdapter(clinicList);
+        recyclerView.setAdapter(adapter);
+
+        db = FirebaseFirestore.getInstance();
+        loadClinics();
+
+        return view;
+    }
+
+    private void loadClinics() {
+        db.collection("Clinics")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    clinicList.clear();
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        ClinicModel clinic = doc.toObject(ClinicModel.class);
+                        clinicList.add(clinic);
+                    }
+                    adapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Failed to load clinics: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }
