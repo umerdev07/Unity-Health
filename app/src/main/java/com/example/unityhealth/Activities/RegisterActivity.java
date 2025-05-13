@@ -24,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
-
+    TextView loginRedirect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         roleRadioGroup = findViewById(R.id.roleRadioGroup);
         registerButton = findViewById(R.id.registerButton);
+        loginRedirect = findViewById(R.id.loginRedirect);
 
+        loginRedirect.setOnClickListener(v -> startActivity(new Intent(RegisterActivity.this, LoginActivity.class)));
         registerButton.setOnClickListener(view -> registerUser());
     }
 

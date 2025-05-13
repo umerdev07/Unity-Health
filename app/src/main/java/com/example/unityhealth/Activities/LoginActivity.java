@@ -13,7 +13,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText emailEditText, passwordEditText;
     Button loginButton;
-
+    TextView signUpPrompt;
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
 
@@ -28,7 +28,9 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
+        signUpPrompt = findViewById(R.id.signUpPrompt);
 
+        signUpPrompt.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
         loginButton.setOnClickListener(v -> loginUser());
     }
 
